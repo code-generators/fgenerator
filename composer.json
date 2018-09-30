@@ -1,0 +1,25 @@
+{
+    "name": "life-code/fgenerator",
+    "description": "generate laravel code",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nash.tang",
+            "email": "112614251@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "LifeCode\\Fgenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "fgenerator": {
+            "providers": [
+                "LifeCode\\Fgenerator\\ServiceProvider"
+            ]
+        }
+    },
+}
