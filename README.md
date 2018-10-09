@@ -1,12 +1,12 @@
-# 用于生成laravel代码
+# laravel 代码生成器
 
 ## 参数
 
-- group 分组
+- group 分组 示例 api、admin
 
-- module 模块
+- module 模块 示例 member
 
-- model 模型
+- model 模型 示例 user 
 
 - type 生成类型 不传则为全部生成
     
