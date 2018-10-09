@@ -10,10 +10,10 @@
 
 - type 生成类型 不传则为全部生成
     
-    - controller
-    - model
-    - repository
-    - view
+    - controller (curd控制器)
+    - model (先生成数据库再操作)
+    - repository (curd数据操作)
+    - view (包含curd所有的视图)
 
 ## 使用
 
