@@ -18,9 +18,9 @@
         }
     },
     "extra": {
-        "fgenerator": {
+        "laravel": {
             "providers": [
-                "LifeCode\\Fgenerator\\ServiceProvider"
+                "LifeCode\\Fgenerator\\FgeneratorProvider"
             ]
         }
     }
