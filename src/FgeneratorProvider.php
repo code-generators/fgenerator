@@ -3,6 +3,7 @@
 namespace LifeCode\Fgenerator;
 
 use Illuminate\Support\ServiceProvider;
+use LifeCode\Fgenerator\Generator\FgeneratorCommand;
 
 class FgeneratorProvider extends ServiceProvider
 {
@@ -13,7 +14,11 @@ class FgeneratorProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                FgeneratorCommand::class
+            ]);
+        }
     }
 
     /**
@@ -24,6 +29,7 @@ class FgeneratorProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton("fgenerator", function(){
+
             return new Fgenerator();
         });
     }
