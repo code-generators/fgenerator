@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "mews/captcha": "^2.2"
+    },
     "autoload": {
         "psr-4": {
             "LifeCode\\Fgenerator\\": "src/"

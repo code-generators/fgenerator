@@ -8,6 +8,7 @@ namespace LifeCode\Fgenerator\Generator;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class BaseGenerator extends Controller
 {
@@ -32,5 +33,22 @@ class BaseGenerator extends Controller
         $this->model            = $model;
         $this->customFile       = $customFile;
         $this->customTemplate   = $customTemplate;
+    }
+
+    /**
+     * 生成模板
+     * @author nash.tang <112614251@qq.com>
+     *
+     * @param $filePath
+     * @param $templatePath
+     * @param $data
+     */
+    public function make($filePath, $templatePath, $data)
+    {
+        if(!file_exists(resource_path($filePath)))
+        {
+            $view =  View::file($templatePath, $data);
+            file_put_contents(resource_path($filePath), str_replace(["<%", "%>", "#", "*"], ["{{", "}}", "@", "$"], $view->render()));
+        }
     }
 }

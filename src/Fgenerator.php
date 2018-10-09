@@ -9,6 +9,7 @@ namespace LifeCode\Fgenerator;
 use LifeCode\Fgenerator\Generator\ControllerGenerator;
 use LifeCode\Fgenerator\Generator\ModelGenerator;
 use LifeCode\Fgenerator\Generator\RepositoryGenerator;
+use LifeCode\Fgenerator\Generator\ViewGenerator;
 
 class Fgenerator
 {
@@ -36,10 +37,14 @@ class Fgenerator
             case "repository":
                 $this->generateRepository($group, $module, $model, $file, $customTemplate);
                 break;
+            case "view":
+                $this->generateView($group, $module, $model, $file, $customTemplate);
+                break;
             default:
                 $this->generateController($group, $module, $model, $file, $customTemplate);
                 $this->generateModel($group, $module, $model, $file, $customTemplate);
                 $this->generateRepository($group, $module, $model, $file, $customTemplate);
+                $this->generateView($group, $module, $model, $file, $customTemplate);
         }
     }
     
@@ -88,6 +93,22 @@ class Fgenerator
     public function generateRepository($group, $module, $model, $file = "", $customTemplate = "")
     {
         $generator = new RepositoryGenerator($group, $module, $model, $file, $customTemplate);
+        $generator->run();
+    }
+
+    /**
+     * 生成视图
+     * @author nash.tang <112614251@qq.com>
+     *
+     * @param $group
+     * @param $module
+     * @param $model
+     * @param $file
+     * @param string $customTemplate
+     */
+    public function generateView($group, $module, $model, $file = "", $customTemplate = "")
+    {
+        $generator = new ViewGenerator($group, $module, $model, $file, $customTemplate);
         $generator->run();
     }
 }

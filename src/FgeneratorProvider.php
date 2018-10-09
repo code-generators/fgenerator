@@ -19,6 +19,10 @@ class FgeneratorProvider extends ServiceProvider
                 FgeneratorCommand::class
             ]);
         }
+
+        $this->publishes([
+            __DIR__.'/Generator/static' => public_path('/'),
+        ], 'fgenerator');
     }
 
     /**
