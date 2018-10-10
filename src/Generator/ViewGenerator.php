@@ -46,10 +46,6 @@ class ViewGenerator extends BaseGenerator
         ];
 
         $this->makeDir();
-        $this->makeLayouts($data);
-        $this->makeCommon($data);
-        $this->makeHome($data);
-        $this->makeLogin($data);
 
         //列表视图
         $listsFilePath      = "views/".$this->group."/".$this->module."/".$this->model."_lists.blade.php";
@@ -92,91 +88,5 @@ class ViewGenerator extends BaseGenerator
         {
             mkdir(resource_path("views/".$this->group."/".$this->module));
         }
-
-        if(!is_dir(resource_path("views/".$this->group."/layouts")))
-        {
-            mkdir(resource_path("views/".$this->group."/layouts"));
-        }
-
-        if(!is_dir(resource_path("views/".$this->group."/common")))
-        {
-            mkdir(resource_path("views/".$this->group."/common"));
-        }
-
-        if(!is_dir(resource_path("views/".$this->group."/home")))
-        {
-            mkdir(resource_path("views/".$this->group."/home"));
-        }
-    }
-
-    /**
-     * 生成布局文件
-     * @author nash.tang <112614251@qq.com>
-     * @param $data
-     */
-    public function makeLayouts($data)
-    {
-        $layoutsFilePath     = "views/".$this->group."/layouts/".$this->group.".blade.php";
-        $layoutsTemplatePath = $this->customTemplate ?: __DIR__."/template/view/layouts.blade.php";
-
-        $this->make($layoutsFilePath, $layoutsTemplatePath, $data);
-    }
-
-    /**
-     * 生成公共模板文件
-     * @author nash.tang <112614251@qq.com>
-     * @param $data
-     */
-    public function makeCommon($data)
-    {
-        //头部
-        $headerFilePath     = "views/".$this->group."/common/header.blade.php";
-        $headerTemplatePath = $this->customTemplate ?: __DIR__."/template/view/header.blade.php";
-
-        $this->make($headerFilePath, $headerTemplatePath, $data);
-
-        //底部
-        $footerFilePath     = "views/".$this->group."/common/footer.blade.php";
-        $footerTemplatePath = $this->customTemplate ?: __DIR__."/template/view/footer.blade.php";
-
-        $this->make($footerFilePath, $footerTemplatePath, $data);
-
-        //导航
-        $navFilePath     = "views/".$this->group."/common/nav.blade.php";
-        $navTemplatePath = $this->customTemplate ?: __DIR__."/template/view/nav.blade.php";
-
-        $this->make($navFilePath, $navTemplatePath, $data);
-
-        //菜单
-        $menuFilePath     = "views/".$this->group."/common/menu.blade.php";
-        $menuTemplatePath = $this->customTemplate ?: __DIR__."/template/view/menu.blade.php";
-
-        $this->make($menuFilePath, $menuTemplatePath, $data);
-    }
-
-    /**
-     * 生成首页
-     * @author nash.tang <112614251@qq.com>
-     * @param $data
-     */
-    public function makeHome($data)
-    {
-        $homeFilePath     = "views/".$this->group."/home/index.blade.php";
-        $homeTemplatePath = $this->customTemplate ?: __DIR__."/template/view/index.blade.php";
-
-        $this->make($homeFilePath, $homeTemplatePath, $data);
-    }
-
-    /**
-     * 生成登录页
-     * @author nash.tang <112614251@qq.com>
-     * @param $data
-     */
-    public function makeLogin($data)
-    {
-        $loginFilePath     = "views/".$this->group."/home/login.blade.php";
-        $loginTemplatePath = $this->customTemplate ?: __DIR__."/template/view/login.blade.php";
-
-        $this->make($loginFilePath, $loginTemplatePath, $data);
     }
 }
