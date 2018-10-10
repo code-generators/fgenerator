@@ -1,11 +1,5 @@
-namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\BaseController;
-use App\Repositories\{{ucfirst($model)}}Repository;
-use Illuminate\Http\Request;
 
-class {{ucfirst($module)}}Controller extends BaseController
-{
     /**
      * 列表
      * @author

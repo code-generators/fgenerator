@@ -50,14 +50,19 @@ class RepositoryGenerator extends BaseGenerator
 
         $filePath = "Repositories/".ucfirst($model)."Repository.php";
 
-        if(!file_exists(app_path($filePath)))
+        if(!is_dir(app_path("Repositories/")))
         {
-            if(!is_dir(app_path("Repositories/")))
-            {
-                mkdir(app_path("Repositories/"));
-            }
+            mkdir(app_path("Repositories/"));
         }
 
-        file_put_contents(app_path($filePath), "<?php \n\n" . $view->render());
+        if(!file_exists(app_path($filePath)))
+        {
+            file_put_contents(app_path($filePath), "<?php \n\n" . $view->render());
+        }else{
+            if($this->mode == "overwrite")
+            {
+                file_put_contents(app_path($filePath), "<?php \n\n" . $view->render());
+            }
+        }
     }
 }

@@ -51,25 +51,25 @@ class ViewGenerator extends BaseGenerator
         $listsFilePath      = "views/".$this->group."/".$this->module."/".$this->model."_lists.blade.php";
         $listsTemplatePath  = $this->customTemplate ?: __DIR__."/template/view/lists.blade.php";
 
-        $this->make($listsFilePath, $listsTemplatePath, $data);
+        $this->makeView($listsFilePath, $listsTemplatePath, $data);
 
         //创建视图
         $addFilePath        = "views/".$this->group."/".$this->module."/add_".$this->model.".blade.php";
         $addTemplatePath    = $this->customTemplate ?: __DIR__."/template/view/add.blade.php";
 
-        $this->make($addFilePath, $addTemplatePath, $data);
+        $this->makeView($addFilePath, $addTemplatePath, $data);
 
         //编辑视图
         $editFilePath       = "views/".$this->group."/".$this->module."/edit_".$this->model.".blade.php";
         $editTemplatePath   = $this->customTemplate ?: __DIR__."/template/view/edit.blade.php";
 
-        $this->make($editFilePath, $editTemplatePath, $data);
+        $this->makeView($editFilePath, $editTemplatePath, $data);
 
         //查看视图
         $viewFilePath       = "views/".$this->group."/".$this->module."/view_".$this->model.".blade.php";
         $viewTemplatePath   = $this->customTemplate ?: __DIR__."/template/view/view.blade.php";
 
-        $this->make($viewFilePath, $viewTemplatePath, $data);
+        $this->makeView($viewFilePath, $viewTemplatePath, $data);
     }
 
     /**

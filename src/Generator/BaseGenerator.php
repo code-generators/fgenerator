@@ -15,6 +15,7 @@ class BaseGenerator extends Controller
     protected $group;
     protected $module;
     protected $model;
+    protected $mode;
     protected $customFile;
     protected $customTemplate;
 
@@ -23,14 +24,16 @@ class BaseGenerator extends Controller
      * @param $group
      * @param $module
      * @param $model
+     * @param $mode
      * @param $customFile
      * @param string $customTemplate
      */
-    public function __construct($group, $module, $model, $customFile, $customTemplate = "")
+    public function __construct($group, $module, $model, $mode, $customFile, $customTemplate = "")
     {
         $this->group            = $group;
         $this->module           = $module;
         $this->model            = $model;
+        $this->mode             = $mode;
         $this->customFile       = $customFile;
         $this->customTemplate   = $customTemplate;
     }
@@ -43,12 +46,18 @@ class BaseGenerator extends Controller
      * @param $templatePath
      * @param $data
      */
-    public function make($filePath, $templatePath, $data)
+    public function makeView($filePath, $templatePath, $data)
     {
         if(!file_exists(resource_path($filePath)))
         {
             $view =  View::file($templatePath, $data);
             file_put_contents(resource_path($filePath), str_replace(["<%", "%>", "#", "*"], ["{{", "}}", "@", "$"], $view->render()));
+        }else{
+            if($this->mode == "overwrite")
+            {
+                $view =  View::file($templatePath, $data);
+                file_put_contents(resource_path($filePath), str_replace(["<%", "%>", "#", "*"], ["{{", "}}", "@", "$"], $view->render()));
+            }
         }
     }
 }

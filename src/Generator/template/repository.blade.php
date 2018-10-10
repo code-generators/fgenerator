@@ -58,13 +58,20 @@ class {{ucfirst($model)}}Repository
      @endforeach
 * @return {{ucfirst($model)}}|bool
     */
-    public static function save({{implode(", ", $paramStrings)}})
-    {
+    @if(count($tableColumns) > 0)
+public static function save({{implode(", ", $paramStrings)}})
+    @else
+public static function save($field)
+    @endif
+{
         ${{lcfirst($model)}} = new {{ucfirst($model)}}();
 
         @if(count($tableColumns) > 0)@foreach($tableColumns as $tableColumn)
 ${{lcfirst($model)}}->{{$tableColumn}} = ${{lcfirst(camel_case($tableColumn))}};
-        @endforeach @endif
+        @endforeach
+        @else
+${{lcfirst($model)}}->field = $field;
+        @endif
 
         $res = ${{lcfirst($model)}}->save();
 
@@ -86,8 +93,12 @@ ${{lcfirst($model)}}->{{$tableColumn}} = ${{lcfirst(camel_case($tableColumn))}};
      @endforeach
 * @return {{ucfirst($model)}}Repository|bool|mixed
      */
-    public static function update($id, {{implode(", ", $paramStrings)}})
-    {
+    @if(count($tableColumns) > 0)
+public static function update($id, {{implode(", ", $paramStrings)}})
+    @else
+public static function update($id, $field)
+    @endif
+{
         ${{lcfirst($model)}} = self::findOneById($id);
 
         if(${{lcfirst($model)}})
@@ -95,7 +106,9 @@ ${{lcfirst($model)}}->{{$tableColumn}} = ${{lcfirst(camel_case($tableColumn))}};
 
             @if(count($tableColumns) > 0)@foreach($tableColumns as $tableColumn)
 ${{lcfirst($model)}}->{{$tableColumn}} = ${{lcfirst(camel_case($tableColumn))}};
-            @endforeach @endif
+            @endforeach @else
+${{lcfirst($model)}}->field = $field;
+            @endif
 
             $res = ${{lcfirst($model)}}->save();
 

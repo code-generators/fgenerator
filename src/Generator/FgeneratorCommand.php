@@ -11,7 +11,7 @@ class FgeneratorCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fgenerator:run {group} {module} {model} {type?}';
+    protected $signature = 'fgenerator:run {group} {module} {model} {type?} {--mode=default}';
 
     /**
      * The console command description.
@@ -41,7 +41,8 @@ class FgeneratorCommand extends Command
             $this->argument('group'),
             $this->argument('module'),
             $this->argument('model'),
-            $this->argument('type')
+            $this->argument('type'),
+            $this->option('mode')
         );
     }
 }

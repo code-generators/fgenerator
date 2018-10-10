@@ -42,14 +42,19 @@ class ModelGenerator extends BaseGenerator
 
         $filePath = "Models/".ucfirst($model).".php";
 
-        if(!file_exists(app_path($filePath)))
+        if(!is_dir(app_path("Models/")))
         {
-            if(!is_dir(app_path("Models/")))
-            {
-                mkdir(app_path("Models/"));
-            }
+            mkdir(app_path("Models/"));
         }
 
-        file_put_contents(app_path($filePath), "<?php \n\n" . $view->render());
+        if(!file_exists(app_path($filePath)))
+        {
+            file_put_contents(app_path($filePath), "<?php \n\n" . $view->render());
+        }else{
+            if($this->mode == "overwrite")
+            {
+                file_put_contents(app_path($filePath), "<?php \n\n" . $view->render());
+            }
+        }
     }
 }

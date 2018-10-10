@@ -10,13 +10,15 @@
 
 - type 生成类型 不传则为全部生成
     
-    - controller (curd控制器)
+    - controller (module下的model操作curd的控制器)
     - model (先生成数据表再操作)
-    - repository (curd数据操作)
-    - view (包含curd所有的视图)
+    - repository (model下的curd数据操作封装)
+    - view (包含lists view add edit 视图)
+    
+- mode 模式 overwrite 覆盖模式(慎用)、 append 追加模式(用于controller追加) 
 
 ## 使用
 
 ```
-php artisan fgenerator:run group module model type
+php artisan fgenerator:run group module model type --mode=append
 ```   
