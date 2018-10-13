@@ -10,7 +10,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "mews/captcha": "^2.2"
     },
     "autoload": {
         "psr-4": {
