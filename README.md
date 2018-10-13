@@ -22,5 +22,5 @@
 ## 使用
 
 ```
-php artisan fgenerator:run group module model type --mode=append
+php artisan fgenerator:run group module model type --mode=append --ouput=api
 ```   
