@@ -16,6 +16,7 @@ class BaseGenerator extends Controller
     protected $module;
     protected $model;
     protected $mode;
+    protected $output;
     protected $customFile;
     protected $customTemplate;
 
@@ -25,15 +26,17 @@ class BaseGenerator extends Controller
      * @param $module
      * @param $model
      * @param $mode
+     * @param $output
      * @param $customFile
      * @param string $customTemplate
      */
-    public function __construct($group, $module, $model, $mode, $customFile, $customTemplate = "")
+    public function __construct($group, $module, $model, $mode, $output, $customFile, $customTemplate = "")
     {
         $this->group            = $group;
         $this->module           = $module;
         $this->model            = $model;
         $this->mode             = $mode;
+        $this->output           = $output;
         $this->customFile       = $customFile;
         $this->customTemplate   = $customTemplate;
     }

@@ -33,7 +33,12 @@ class ControllerGenerator extends BaseGenerator
         $module  = camel_case($this->module);
         $model   = camel_case($this->model);
 
-        $templatePath = $this->customTemplate ?: __DIR__."/template/controller.blade.php";
+        if($this->output == "api")
+        {
+            $templatePath = $this->customTemplate ?: __DIR__."/template/api_controller.blade.php";
+        }else{
+            $templatePath = $this->customTemplate ?: __DIR__."/template/controller.blade.php";
+        }
 
         $paramColumns = array_diff($tableColumns, ["id", "created_at", "updated_at"]);
 
@@ -106,10 +111,15 @@ class ControllerGenerator extends BaseGenerator
         }
         fclose($fileHandle);
 
-        $view = View::file(__DIR__."/template/append_controller.blade.php", $data);
+        if($this->output == "api")
+        {
+            $view = View::file(__DIR__."/template/append_api_controller.blade.php", $data);
+        }else{
+            $view = View::file(__DIR__."/template/append_controller.blade.php", $data);
+        }
 
         $fp = new \SplFileObject(app_path($filePath), 'r+');
-        $fp->seek($n - 1);
+        $fp->seek($n - 2);
         $fp->fwrite("    ".$view->render());
     }
 }

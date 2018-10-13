@@ -10,12 +10,14 @@ class {{ucfirst($module)}}Controller extends BaseController
      * 列表
      * @author
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
      */
     public function {{lcfirst($model)}}Lists()
     {
         ${{lcfirst($model)}}Lists = {{ucfirst($model)}}Repository::getListsByPaginate();
-        return view("{{$group}}.{{lcfirst($module)}}.{{lcfirst($model)}}_lists", compact("{{lcfirst($model)}}Lists"));
+        return $this->apiSuccess([
+            'lists' => ${{lcfirst($model)}}Lists
+        ]);
     }
 
     /**
@@ -23,16 +25,18 @@ class {{ucfirst($module)}}Controller extends BaseController
      * @author
      *
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
      */
     public function view{{ucfirst($model)}}($id)
     {
         ${{lcfirst($model)}} = {{ucfirst($model)}}Repository::findOneById($id);
         if(${{lcfirst($model)}})
         {
-            return view("{{$group}}.{{lcfirst($module)}}.view_{{lcfirst($model)}}", compact("{{lcfirst($model)}}"));
+            return $this->apiSuccess([
+                'info' => ${{lcfirst($model)}}
+            ]);
         }else{
-            abort(404);
+            return $this->apiFail("记录不存在");
         }
     }
 
@@ -85,8 +89,6 @@ if(${{lcfirst($model)}})
                 return $this->apiFail("添加失败");
             }
         }
-
-        return view("{{lcfirst($group)}}.{{lcfirst($module)}}.add_{{lcfirst($model)}}");
     }
 
     /**
@@ -143,10 +145,6 @@ ${{lcfirst($model)}} = {{ucfirst($model)}}Repository::update($id, $field);
                 return $this->apiFail("更新失败");
             }
         }
-
-        ${{lcfirst($model)}} = {{ucfirst($model)}}Repository::findOneById($request->input("id"));
-
-        return view("{{lcfirst($group)}}.{{lcfirst($module)}}.edit_{{lcfirst($model)}}", compact("{{lcfirst($model)}}"));
     }
 
     /**
