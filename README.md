@@ -17,7 +17,7 @@
     
 - mode 模式 default 默认模式(如果文件存在则跳过)、 overwrite 覆盖模式(慎用)、 append 追加模式(用于controller追加)
 
-- output 输出方式 api(接口模式)、 view(视图模式) 默认view
+- output 输出方式 api(接口模式)、 view(视图模式 默认)
 
 ## 使用
 
