@@ -9,6 +9,7 @@ namespace LifeCode\Fgenerator;
 use LifeCode\Fgenerator\Generator\ControllerGenerator;
 use LifeCode\Fgenerator\Generator\ModelGenerator;
 use LifeCode\Fgenerator\Generator\RepositoryGenerator;
+use LifeCode\Fgenerator\Generator\RouteGenerator;
 use LifeCode\Fgenerator\Generator\ViewGenerator;
 
 class Fgenerator
@@ -32,6 +33,7 @@ class Fgenerator
         {
             case "controller":
                 $this->generateController($group, $module, $model, $mode, $output, $file, $customTemplate);
+                $this->generateRoute($group, $module, $model, $mode, $output, $file, $customTemplate);
                 break;
             case "model":
                 $this->generateModel($group, $module, $model, $mode, $output, $file, $customTemplate);
@@ -44,6 +46,7 @@ class Fgenerator
                 break;
             default:
                 $this->generateController($group, $module, $model, $mode, $output, $file, $customTemplate);
+                $this->generateRoute($group, $module, $model, $mode, $output, $file, $customTemplate);
                 $this->generateModel($group, $module, $model, $mode, $output, $file, $customTemplate);
                 $this->generateRepository($group, $module, $model, $mode, $output, $file, $customTemplate);
                 $this->generateView($group, $module, $model, $mode, $output, $file, $customTemplate);
@@ -65,6 +68,24 @@ class Fgenerator
     public function generateController($group, $module, $model, $mode, $output, $file = "", $customTemplate = "")
     {
         $generator = new ControllerGenerator($group, $module, $model, $mode, $output, $file, $customTemplate);
+        $generator->run();
+    }
+
+    /**
+     * 生成路由
+     * @author nash.tang <112614251@qq.com>
+     *
+     * @param $group
+     * @param $module
+     * @param $model
+     * @param $mode
+     * @param $output
+     * @param string $file
+     * @param string $customTemplate
+     */
+    public function generateRoute($group, $module, $model, $mode, $output, $file = "", $customTemplate = "")
+    {
+        $generator = new RouteGenerator($group, $module, $model, $mode, $output, $file, $customTemplate);
         $generator->run();
     }
 
