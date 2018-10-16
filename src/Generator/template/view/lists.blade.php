@@ -83,7 +83,7 @@
                 layer.confirm("确认删除?",function(){
                     *.ajax({
                         url: "<%route('{{lcfirst($group)}}.{{lcfirst($module)}}.{{lcfirst($model)}}.delete')%>" ,
-                        data: {'id':id, '_token': "{{csrf_token()}}"} ,
+                        data: {'id':id, '_token': "<%csrf_token()%>"} ,
                         type: "post" ,
                         dataType:'json',
                         success:function(data){
