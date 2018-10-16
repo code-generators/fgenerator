@@ -1,6 +1,18 @@
 # laravel 代码生成器
 
-## 参数
+## 截图
+
+暂无
+
+## 安装
+
+- 引入扩展包
+
+```bash
+composer require "lifecode/fgenerator"
+```
+
+## 使用
 
 - group 分组 示例 api、admin
 
@@ -19,7 +31,7 @@
 
 - output 输出方式 api(接口模式)、 view(视图模式 默认)
 
-## 使用
+## 运行
 
 ```
 php artisan fgenerator:run group module model type --mode=append --ouput=api
